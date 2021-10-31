@@ -3,7 +3,7 @@
     "editor.formatOnSave": false,
     // Enable per-language
     "[typescript]": {
-        "editor.formatOnSave": false
+        "editor.formatOnSave": true
     },
 }
 //     "editor.codeActionsOnSave": {
