@@ -1,0 +1,18 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false,
+    // Enable per-language
+    "[typescript]": {
+        "editor.formatOnSave": false
+    },
+}
+//     "editor.codeActionsOnSave": {
+//         "source.fixAll.eslint": true
+//       },
+//     "eslint.validate": ["javascript"]
+// }
+// {
+//   "editor.codeActionsOnSave": {
+//     "source.fixAll.eslint": true
+//   },
+// }
