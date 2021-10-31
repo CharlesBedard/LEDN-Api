@@ -2,7 +2,6 @@
   "name": "ledn-api",
   "version": "1.0.0",
   "description": "API for LEDN interview",
-  "main": "index.js",
   "scripts": {
     "compile": "tsc",
     "api": "node built/api.js",

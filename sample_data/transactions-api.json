@@ -1,0 +1,980 @@
+[
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 617399533,
+        "type": "receive",
+        "createdAt": "2020-06-10T05:04:07.388Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 555585106,
+        "type": "receive",
+        "createdAt": "2020-03-07T07:05:25.867Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 242995135,
+        "type": "send",
+        "createdAt": "2020-05-07T06:24:01.044Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 823915388,
+        "type": "receive",
+        "createdAt": "2020-04-19T02:02:56.702Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 28094227,
+        "type": "send",
+        "createdAt": "2020-11-24T06:37:23.172Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 52949575,
+        "type": "receive",
+        "createdAt": "2020-04-15T17:34:42.691Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 218666742,
+        "type": "receive",
+        "createdAt": "2020-08-23T01:33:00.924Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 13667812,
+        "type": "send",
+        "createdAt": "2020-01-20T11:47:49.275Z"
+    },
+    {
+        "userEmail": "Cassandre10@gmail.com",
+        "amount": 817030186,
+        "type": "receive",
+        "createdAt": "2020-01-17T22:27:15.432Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 447104210,
+        "type": "receive",
+        "createdAt": "2020-10-02T02:23:09.999Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 566135618,
+        "type": "receive",
+        "createdAt": "2020-10-22T09:44:19.790Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 219988917,
+        "type": "receive",
+        "createdAt": "2020-09-18T14:20:57.717Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 829489215,
+        "type": "receive",
+        "createdAt": "2020-09-21T15:27:07.586Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 805250685,
+        "type": "send",
+        "createdAt": "2020-11-27T09:39:25.757Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 33134469,
+        "type": "receive",
+        "createdAt": "2020-10-17T15:23:13.308Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 749130435,
+        "type": "send",
+        "createdAt": "2020-11-12T11:59:12.305Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 791866722,
+        "type": "send",
+        "createdAt": "2020-10-18T16:16:54.078Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 416012908,
+        "type": "receive",
+        "createdAt": "2020-10-16T22:13:33.370Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 18996544,
+        "type": "receive",
+        "createdAt": "2020-10-04T17:09:33.412Z"
+    },
+    {
+        "userEmail": "Dylan_Lockman@yahoo.com",
+        "amount": 659922036,
+        "type": "send",
+        "createdAt": "2020-10-12T12:21:47.282Z"
+    },
+    {
+        "userEmail": "Estella_Metz40@gmail.com",
+        "amount": 728786890,
+        "type": "receive",
+        "createdAt": "2018-02-25T13:55:13.955Z"
+    },
+    {
+        "userEmail": "Estella_Metz40@gmail.com",
+        "amount": 3949756,
+        "type": "send",
+        "createdAt": "2019-01-27T14:39:41.913Z"
+    },
+    {
+        "userEmail": "Estella_Metz40@gmail.com",
+        "amount": 844226292,
+        "type": "send",
+        "createdAt": "2018-07-28T12:11:55.871Z"
+    },
+    {
+        "userEmail": "Estella_Metz40@gmail.com",
+        "amount": 998689938,
+        "type": "send",
+        "createdAt": "2019-08-17T15:49:26.453Z"
+    },
+    {
+        "userEmail": "Estella_Metz40@gmail.com",
+        "amount": 6575096,
+        "type": "receive",
+        "createdAt": "2018-02-22T06:48:15.734Z"
+    },
+    {
+        "userEmail": "Estella_Metz40@gmail.com",
+        "amount": 211635444,
+        "type": "send",
+        "createdAt": "2020-04-11T15:02:59.161Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 318410677,
+        "type": "receive",
+        "createdAt": "2020-11-17T16:41:14.019Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 530185952,
+        "type": "receive",
+        "createdAt": "2020-10-31T05:41:52.945Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 279934473,
+        "type": "receive",
+        "createdAt": "2020-06-29T20:20:29.887Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 896638089,
+        "type": "receive",
+        "createdAt": "2020-06-19T12:10:37.497Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 701343595,
+        "type": "send",
+        "createdAt": "2020-11-03T17:42:52.776Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 663613625,
+        "type": "send",
+        "createdAt": "2020-09-28T05:15:42.845Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 748096229,
+        "type": "send",
+        "createdAt": "2020-09-28T04:53:50.683Z"
+    },
+    {
+        "userEmail": "Jamel25@yahoo.com",
+        "amount": 247721793,
+        "type": "receive",
+        "createdAt": "2020-07-01T04:24:16.592Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 103097824,
+        "type": "receive",
+        "createdAt": "2020-11-08T23:57:25.172Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 894913373,
+        "type": "receive",
+        "createdAt": "2020-07-04T00:27:54.785Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 561865476,
+        "type": "receive",
+        "createdAt": "2020-08-25T09:53:37.709Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 962855995,
+        "type": "send",
+        "createdAt": "2020-06-12T00:54:19.959Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 780059919,
+        "type": "receive",
+        "createdAt": "2020-09-25T06:56:53.077Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 729694956,
+        "type": "receive",
+        "createdAt": "2020-07-02T10:47:27.022Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 446255612,
+        "type": "send",
+        "createdAt": "2020-03-27T23:26:28.755Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 578891861,
+        "type": "send",
+        "createdAt": "2020-08-07T11:09:13.573Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 514746204,
+        "type": "receive",
+        "createdAt": "2020-11-06T21:07:31.389Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 359057366,
+        "type": "receive",
+        "createdAt": "2020-11-19T05:23:01.602Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 822483795,
+        "type": "send",
+        "createdAt": "2020-08-19T00:56:51.235Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 65765062,
+        "type": "receive",
+        "createdAt": "2020-06-10T10:07:11.315Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 872850464,
+        "type": "receive",
+        "createdAt": "2020-11-15T23:40:30.020Z"
+    },
+    {
+        "userEmail": "Ludwig.Lueilwitz@gmail.com",
+        "amount": 329670538,
+        "type": "send",
+        "createdAt": "2020-09-02T00:25:56.705Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 173742310,
+        "type": "receive",
+        "createdAt": "2020-05-01T14:37:33.803Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 592993161,
+        "type": "send",
+        "createdAt": "2019-03-14T07:19:43.405Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 244699038,
+        "type": "receive",
+        "createdAt": "2019-03-25T22:26:28.050Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 717423651,
+        "type": "receive",
+        "createdAt": "2019-02-02T17:03:39.185Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 444185661,
+        "type": "send",
+        "createdAt": "2019-05-26T22:45:15.644Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 249987394,
+        "type": "receive",
+        "createdAt": "2019-05-17T17:46:14.125Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 221033356,
+        "type": "receive",
+        "createdAt": "2019-05-22T19:16:51.034Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 982401769,
+        "type": "send",
+        "createdAt": "2019-12-21T15:37:37.508Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 349264610,
+        "type": "receive",
+        "createdAt": "2019-10-22T22:11:32.968Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 837313824,
+        "type": "send",
+        "createdAt": "2020-05-30T18:20:57.229Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 816362583,
+        "type": "send",
+        "createdAt": "2020-11-23T05:58:01.308Z"
+    },
+    {
+        "userEmail": "Franz21@yahoo.com",
+        "amount": 965675372,
+        "type": "send",
+        "createdAt": "2019-06-29T15:13:48.000Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 157264578,
+        "type": "send",
+        "createdAt": "2019-06-22T14:06:41.049Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 467789971,
+        "type": "receive",
+        "createdAt": "2020-05-14T04:51:35.913Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 361459049,
+        "type": "send",
+        "createdAt": "2019-02-13T18:49:59.518Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 930968161,
+        "type": "send",
+        "createdAt": "2020-02-07T21:13:58.589Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 979973298,
+        "type": "send",
+        "createdAt": "2019-10-05T04:18:31.975Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 557642476,
+        "type": "send",
+        "createdAt": "2020-11-05T03:32:13.781Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 480663879,
+        "type": "receive",
+        "createdAt": "2020-04-03T12:28:22.957Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 21333865,
+        "type": "send",
+        "createdAt": "2019-04-04T12:08:29.939Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 271329400,
+        "type": "send",
+        "createdAt": "2020-07-16T06:52:00.247Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 85803856,
+        "type": "receive",
+        "createdAt": "2019-08-31T15:12:54.089Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 344854615,
+        "type": "send",
+        "createdAt": "2020-03-12T18:57:54.887Z"
+    },
+    {
+        "userEmail": "Rubye23@yahoo.com",
+        "amount": 185472640,
+        "type": "receive",
+        "createdAt": "2018-10-30T09:30:05.205Z"
+    },
+    {
+        "userEmail": "Gonzalo41@yahoo.com",
+        "amount": 160204868,
+        "type": "receive",
+        "createdAt": "2020-02-27T09:17:14.144Z"
+    },
+    {
+        "userEmail": "Gonzalo41@yahoo.com",
+        "amount": 487010846,
+        "type": "send",
+        "createdAt": "2019-07-12T01:35:36.202Z"
+    },
+    {
+        "userEmail": "Gonzalo41@yahoo.com",
+        "amount": 686031986,
+        "type": "receive",
+        "createdAt": "2020-11-30T22:06:35.931Z"
+    },
+    {
+        "userEmail": "Gonzalo41@yahoo.com",
+        "amount": 109105779,
+        "type": "send",
+        "createdAt": "2019-10-22T05:56:42.170Z"
+    },
+    {
+        "userEmail": "Gonzalo41@yahoo.com",
+        "amount": 712913680,
+        "type": "send",
+        "createdAt": "2020-07-10T07:13:39.441Z"
+    },
+    {
+        "userEmail": "Gonzalo41@yahoo.com",
+        "amount": 715663401,
+        "type": "receive",
+        "createdAt": "2020-10-14T18:47:26.664Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 143909343,
+        "type": "send",
+        "createdAt": "2019-08-25T23:44:54.338Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 659957387,
+        "type": "receive",
+        "createdAt": "2020-11-25T13:19:21.631Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 493784940,
+        "type": "receive",
+        "createdAt": "2020-11-19T16:27:00.446Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 974152138,
+        "type": "send",
+        "createdAt": "2019-08-21T15:40:50.028Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 550399669,
+        "type": "receive",
+        "createdAt": "2020-05-22T02:39:14.168Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 51432213,
+        "type": "receive",
+        "createdAt": "2020-08-10T12:33:21.346Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 727822641,
+        "type": "receive",
+        "createdAt": "2020-08-19T12:31:53.869Z"
+    },
+    {
+        "userEmail": "Jaqueline42@yahoo.com",
+        "amount": 287276400,
+        "type": "receive",
+        "createdAt": "2019-11-27T15:40:24.804Z"
+    },
+    {
+        "userEmail": "Bernie.Von@yahoo.com",
+        "amount": 322519947,
+        "type": "receive",
+        "createdAt": "2019-10-29T11:16:18.382Z"
+    },
+    {
+        "userEmail": "Bernie.Von@yahoo.com",
+        "amount": 434777717,
+        "type": "receive",
+        "createdAt": "2020-09-26T23:36:51.258Z"
+    },
+    {
+        "userEmail": "Bernie.Von@yahoo.com",
+        "amount": 59697485,
+        "type": "send",
+        "createdAt": "2020-11-05T08:43:48.083Z"
+    },
+    {
+        "userEmail": "Bernie.Von@yahoo.com",
+        "amount": 885515944,
+        "type": "receive",
+        "createdAt": "2020-01-10T02:29:05.527Z"
+    },
+    {
+        "userEmail": "Maddison_Schultz@yahoo.com",
+        "amount": 953805180,
+        "type": "receive",
+        "createdAt": "2019-03-20T09:25:06.881Z"
+    },
+    {
+        "userEmail": "Maddison_Schultz@yahoo.com",
+        "amount": 382218910,
+        "type": "receive",
+        "createdAt": "2020-07-26T11:45:04.438Z"
+    },
+    {
+        "userEmail": "Maddison_Schultz@yahoo.com",
+        "amount": 202052257,
+        "type": "receive",
+        "createdAt": "2019-03-06T21:43:41.388Z"
+    },
+    {
+        "userEmail": "Maddison_Schultz@yahoo.com",
+        "amount": 224471173,
+        "type": "receive",
+        "createdAt": "2019-04-11T05:02:35.230Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 937466350,
+        "type": "receive",
+        "createdAt": "2020-04-14T00:44:25.472Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 557328425,
+        "type": "receive",
+        "createdAt": "2020-08-17T21:18:59.775Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 648692446,
+        "type": "send",
+        "createdAt": "2020-07-28T05:52:15.327Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 912468296,
+        "type": "send",
+        "createdAt": "2020-01-27T21:24:25.032Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 464760340,
+        "type": "receive",
+        "createdAt": "2020-05-02T11:24:36.146Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 489303159,
+        "type": "receive",
+        "createdAt": "2020-11-13T02:18:05.172Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 685893520,
+        "type": "receive",
+        "createdAt": "2020-07-31T12:06:49.337Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 317993820,
+        "type": "send",
+        "createdAt": "2020-01-19T13:09:12.739Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 638583990,
+        "type": "send",
+        "createdAt": "2020-05-09T17:58:12.817Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 675612980,
+        "type": "receive",
+        "createdAt": "2019-12-29T16:28:18.532Z"
+    },
+    {
+        "userEmail": "Mia_Bechtelar60@yahoo.com",
+        "amount": 813478205,
+        "type": "receive",
+        "createdAt": "2020-07-25T20:22:41.061Z"
+    },
+    {
+        "userEmail": "Casey_Hermiston@gmail.com",
+        "amount": 908257467,
+        "type": "receive",
+        "createdAt": "2019-06-06T08:08:52.284Z"
+    },
+    {
+        "userEmail": "Casey_Hermiston@gmail.com",
+        "amount": 537997890,
+        "type": "send",
+        "createdAt": "2020-05-27T23:07:11.313Z"
+    },
+    {
+        "userEmail": "Casey_Hermiston@gmail.com",
+        "amount": 136454758,
+        "type": "send",
+        "createdAt": "2019-11-18T12:53:39.128Z"
+    },
+    {
+        "userEmail": "Casey_Hermiston@gmail.com",
+        "amount": 931622584,
+        "type": "receive",
+        "createdAt": "2019-03-17T06:45:40.229Z"
+    },
+    {
+        "userEmail": "Casey_Hermiston@gmail.com",
+        "amount": 126000004,
+        "type": "send",
+        "createdAt": "2020-07-23T17:41:34.334Z"
+    },
+    {
+        "userEmail": "Lydia.Considine@yahoo.com",
+        "amount": 949251770,
+        "type": "receive",
+        "createdAt": "2020-11-10T21:42:02.815Z"
+    },
+    {
+        "userEmail": "Lydia.Considine@yahoo.com",
+        "amount": 31706566,
+        "type": "receive",
+        "createdAt": "2020-08-01T09:24:08.608Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 977024846,
+        "type": "receive",
+        "createdAt": "2019-10-27T16:08:39.180Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 671589804,
+        "type": "receive",
+        "createdAt": "2019-11-08T21:34:56.611Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 248703807,
+        "type": "receive",
+        "createdAt": "2019-10-03T04:32:39.028Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 817230573,
+        "type": "send",
+        "createdAt": "2019-11-09T05:41:07.527Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 837390007,
+        "type": "send",
+        "createdAt": "2020-10-18T22:26:42.736Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 806812618,
+        "type": "receive",
+        "createdAt": "2020-08-17T04:43:42.389Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 54422655,
+        "type": "send",
+        "createdAt": "2020-11-11T21:53:40.305Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 291284068,
+        "type": "send",
+        "createdAt": "2019-07-01T20:25:49.789Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 703768072,
+        "type": "receive",
+        "createdAt": "2019-10-24T11:32:15.672Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 841809997,
+        "type": "receive",
+        "createdAt": "2019-06-28T09:06:30.536Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 653819031,
+        "type": "receive",
+        "createdAt": "2020-01-23T02:26:03.095Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 400719682,
+        "type": "send",
+        "createdAt": "2019-07-13T21:26:39.115Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 477948864,
+        "type": "send",
+        "createdAt": "2019-12-14T19:55:46.418Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 872001798,
+        "type": "receive",
+        "createdAt": "2020-06-23T22:11:27.913Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 745547505,
+        "type": "send",
+        "createdAt": "2020-09-20T13:50:42.721Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 756870044,
+        "type": "send",
+        "createdAt": "2020-08-19T03:50:03.153Z"
+    },
+    {
+        "userEmail": "Seth_Gusikowski@yahoo.com",
+        "amount": 44709806,
+        "type": "receive",
+        "createdAt": "2019-11-24T12:36:01.326Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 724559423,
+        "type": "receive",
+        "createdAt": "2020-07-09T05:02:58.182Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 907135927,
+        "type": "send",
+        "createdAt": "2020-05-09T04:18:57.917Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 18968954,
+        "type": "receive",
+        "createdAt": "2020-08-20T04:47:40.581Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 908430962,
+        "type": "receive",
+        "createdAt": "2020-05-17T01:30:54.502Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 626722798,
+        "type": "send",
+        "createdAt": "2020-07-25T23:04:40.075Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 379400186,
+        "type": "send",
+        "createdAt": "2020-11-01T23:37:47.349Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 723859169,
+        "type": "send",
+        "createdAt": "2020-11-25T03:22:52.673Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 874468065,
+        "type": "send",
+        "createdAt": "2020-04-14T17:19:34.305Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 862072130,
+        "type": "send",
+        "createdAt": "2020-07-12T03:28:08.393Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 235709916,
+        "type": "send",
+        "createdAt": "2020-10-06T15:18:47.232Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 958196306,
+        "type": "send",
+        "createdAt": "2020-07-05T10:02:49.530Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 511199971,
+        "type": "receive",
+        "createdAt": "2020-08-29T09:31:52.913Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 545372945,
+        "type": "receive",
+        "createdAt": "2020-07-28T10:17:53.383Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 718728788,
+        "type": "receive",
+        "createdAt": "2020-06-08T17:41:30.407Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 611943523,
+        "type": "receive",
+        "createdAt": "2020-09-24T01:08:25.490Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 297779776,
+        "type": "send",
+        "createdAt": "2020-04-13T07:38:19.544Z"
+    },
+    {
+        "userEmail": "Leila59@gmail.com",
+        "amount": 924829377,
+        "type": "receive",
+        "createdAt": "2020-05-31T03:10:52.898Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 916379338,
+        "type": "receive",
+        "createdAt": "2020-06-29T03:16:03.097Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 832411185,
+        "type": "send",
+        "createdAt": "2020-07-05T08:22:57.362Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 677075461,
+        "type": "send",
+        "createdAt": "2020-07-29T20:10:32.912Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 241377853,
+        "type": "receive",
+        "createdAt": "2020-11-25T15:00:56.962Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 233369692,
+        "type": "send",
+        "createdAt": "2020-09-30T14:02:02.364Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 786097023,
+        "type": "send",
+        "createdAt": "2020-11-02T11:32:30.071Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 124468940,
+        "type": "send",
+        "createdAt": "2020-11-15T10:09:58.003Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 240729058,
+        "type": "receive",
+        "createdAt": "2020-08-15T00:06:38.456Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 529702379,
+        "type": "receive",
+        "createdAt": "2020-09-18T10:23:16.468Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 675389040,
+        "type": "receive",
+        "createdAt": "2020-10-15T09:39:54.990Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 812466227,
+        "type": "receive",
+        "createdAt": "2020-06-26T17:57:53.308Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 673976398,
+        "type": "receive",
+        "createdAt": "2020-06-02T14:35:04.846Z"
+    },
+    {
+        "userEmail": "Shaina90@yahoo.com",
+        "amount": 824195953,
+        "type": "send",
+        "createdAt": "2020-08-11T01:35:48.169Z"
+    },
+    {
+        "userEmail": "Faustino_Brown10@gmail.com",
+        "amount": 315453764,
+        "type": "send",
+        "createdAt": "2019-08-02T02:39:18.109Z"
+    },
+    {
+        "userEmail": "Faustino_Brown10@gmail.com",
+        "amount": 231297099,
+        "type": "send",
+        "createdAt": "2018-07-04T09:35:01.748Z"
+    },
+    {
+        "userEmail": "Faustino_Brown10@gmail.com",
+        "amount": 38773623,
+        "type": "receive",
+        "createdAt": "2020-05-08T20:09:07.181Z"
+    },
+    {
+        "userEmail": "Faustino_Brown10@gmail.com",
+        "amount": 42232902,
+        "type": "receive",
+        "createdAt": "2020-04-05T04:14:17.375Z"
+    }
+]
