@@ -1,0 +1,19 @@
+{
+  "name": "ledn-api",
+  "version": "1.0.0",
+  "description": "API for LEDN interview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CharlesBedard/LEDN-Api.git"
+  },
+  "author": "Charles-Alexandre Bedard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CharlesBedard/LEDN-Api/issues"
+  },
+  "homepage": "https://github.com/CharlesBedard/LEDN-Api#readme"
+}
