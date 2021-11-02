@@ -72,14 +72,45 @@ export async function populateDatabase(sampleType: string) {
         transaction.userId = userMap.get(transaction.userEmail.toLowerCase())._id;
         delete transaction.userEmail;
     }
+    let transactionResponse;
     try {
-        const transactionResponse = await TransactionModel.insertMany(transactions, { ordered: false });
+        transactionResponse = await TransactionModel.insertMany(transactions, { ordered: false });
         console.log(`inserted transactions: ${transactionResponse.length}`);
         response.insertedTransactions = transactionResponse.length;
     } catch (err) {
         console.log(`inserted documents: ${err?.result?.nInserted}`);
         console.log(`errors: ${err?.result?.result?.writeErrors}`);
         response.transactionErrors = err?.result?.result?.writeErrors?.length;
+    }
+
+    // loop through transactions to get the balance of every user
+    try {
+        // create a map where -> key: userId, value: array of all transactions for userId
+        const transactionMap = new Map();
+        transactionResponse.forEach((transaction) => {
+            if (transactionMap.has(transaction.userId)) {
+                transactionMap.get(transaction.userId).push(transaction);
+            } else {
+                transactionMap.set(transaction.userId, [transaction]);
+            }
+        });
+
+        transactionMap.forEach((value, key) => {
+            // sum up the transactions
+            let balance = 0;
+            value.forEach((transaction: { type: string; amount: number }) => {
+                if (transaction.type === 'receive') {
+                    balance += transaction.amount;
+                } else if (transaction.type === 'send') {
+                    balance -= transaction.amount;
+                }
+            });
+            UserModel.findByIdAndUpdate(key, { balance: balance }).catch((e) => {
+                console.log(e);
+            });
+        });
+    } catch (err) {
+        console.log(`Unable to update account balances: ${err}`);
     }
 
     return response;
