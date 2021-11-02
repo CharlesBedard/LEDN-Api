@@ -1,12 +1,17 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import { populateDatabase, SampleDataType, MONGOOSE_URI } from './scripts/populate_db';
-import { UserModel, TransactionModel } from './schemas/schemas';
+import { populateDatabase, MONGOOSE_URI } from './scripts/populate_db';
+import { UserModel, TransactionModel, Transaction } from './schemas/schemas';
 
 const app = express();
 const jsonParser = bodyParser.json();
 const port = 3000;
+
+enum TransactionTypes {
+    'send',
+    'receive',
+}
 
 mongoose.connect(MONGOOSE_URI);
 mongoose.connection.on('error', (err) => {
@@ -82,6 +87,43 @@ app.get('/users', async (req, res) => {
     res.send(stringUser);
 });
 
-app.put('/transactions', jsonParser, async (req, res) => {
-    res.send(req.body);
+app.post('/transactions', jsonParser, async (req, res) => {
+    // validate body
+    if (!(req.body.email && req.body.amount && req.body.type))
+        res.status(400).send('Missing parameters. Required parameters are: {email, amount, type}');
+    const emailParam = req.body.email.toLowerCase();
+    const amountParam = Number(req.body.amount);
+    const typeParam = req.body.type.toLowerCase();
+
+    if (!amountParam)
+        res.status(400).send(`Error in parameter "number". Must be a number but received ${req.body.amount}`);
+    if (!Object.values(TransactionTypes).includes(typeParam)) {
+        res.status(400).send(
+            `Error in parameter "type". Valid options are { send, receive }, but received: ${req.body.type}`,
+        );
+    }
+
+    // construct transaction object from request
+    let user;
+    try {
+        user = await UserModel.findOne({ email: emailParam }).lean();
+    } catch (err) {
+        res.status(404).send(`Error fetching user with email: ${emailParam}`);
+    }
+    const transaction: Transaction = {
+        userId: user,
+        amount: amountParam,
+        type: typeParam,
+        createdAt: new Date(),
+    };
+
+    const transactionObj = new TransactionModel(transaction);
+    let transactionResponse;
+    try {
+        transactionResponse = await transactionObj.save();
+    } catch (err) {
+        res.status(404).send(`Error creating transaction: ${err}`);
+    }
+
+    res.send({ message: 'Succesfully created transaction', transaction: transactionResponse });
 });

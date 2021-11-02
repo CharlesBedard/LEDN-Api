@@ -48,7 +48,7 @@ export const UserSchema = new Schema<User>({
 // * `amount` (Number of tokens in transaction)
 // * `type` (Possible values: ['send', 'receive'])
 // * `createdAt` (Transaction creation date)
-interface Transaction {
+export interface Transaction {
     userId: User;
     amount: number;
     type: string;
