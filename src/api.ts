@@ -29,6 +29,43 @@ app.post('/populate-db', async (req, res) => {
     }
 });
 
+app.get('/accounts', async (req, res) => {
+    // validate parameters
+    if (!req?.query?.email) res.status(400).send('Missing parameter: { email }');
+    const requestedUserEmail = req.query.email.toString();
+
+    // get user account from the userId
+    let user;
+    try {
+        user = await UserModel.findOne({ email: requestedUserEmail }).lean();
+    } catch (err) {
+        res.status(404).send(`Error fetching user with email: ${requestedUserEmail}`);
+    }
+
+    // get transactions associated with user
+    let transactions;
+    try {
+        transactions = await TransactionModel.find({}).where({ userId: user._id });
+    } catch (err) {
+        res.status(404).send(`Error fetching transactions for user with email: ${requestedUserEmail}`);
+    }
+
+    // calculate account balance
+    let balance = 0;
+    transactions.forEach((transaction) => {
+        if (transaction.type === 'receive') {
+            balance += transaction.amount;
+        } else if (transaction.type === 'send') {
+            balance -= transaction.amount;
+        }
+    });
+    const stringUser = JSON.parse(JSON.stringify(user));
+    stringUser.balance = balance;
+
+    // TODO: add helper to format response
+    res.send(stringUser);
+});
+
 app.get('/users', async (req, res) => {
     const user = await UserModel.findOne({ email: req.query.email.toString() }).lean();
     const transactions = await TransactionModel.find({}).where({ userId: user._id });

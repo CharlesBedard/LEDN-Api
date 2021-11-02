@@ -40,7 +40,7 @@ export const UserSchema = new Schema<User>({
     mfa: { type: String, enum: [null, 'TOTP', 'SMS'], required: false },
     createdAt: { type: Date, required: true },
     updatedAt: { type: Date, required: true },
-    referredBy: { type: String, required: false },
+    referredBy: { type: String, required: false, lowercase: true },
 });
 
 // Transaction
