@@ -6,13 +6,19 @@
       "title": "Swagger Petstore"
     },
     "host": "localhost:3000",
+    "basePath": "/api",
     "paths" : {
-      "/api" : {
+      "/users" : {
           "get" : {
               "summary" : "Get all the tasks",
               "description": "Get all the tasks",
               "produces": ["application/json"],
-              "parameters": [],
+              "parameters": [{
+                  "in": "query",
+                  "name": "email",
+                  "type": "string",
+                  "required": true
+              }],
               "responses": {
                   "200": {
                       "description": "successful operation",

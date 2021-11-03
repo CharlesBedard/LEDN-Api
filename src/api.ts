@@ -79,8 +79,11 @@ router.get('/accounts', async (req, res) => {
 
 router.get('/users', async (req, res) => {
     // validate parameters
-    if (!(req.query.email || req.query.userId))
+    if (!(req.query.email || req.query.userId)) {
         res.status(400).send('Missing parameters. Required parameters are: {email}');
+        return;
+    }
+
     const emailParam = req.query.email.toString().toLowerCase();
 
     // get the account from the email
