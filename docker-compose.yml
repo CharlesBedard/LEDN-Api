@@ -3,14 +3,22 @@ services:
   mongodb:
     image: mongo:latest
     container_name: mongodb
+    hostname: mongodb
+    command: ["--replSet", "rs0", "--bind_ip_all"]
     environment:
       DB_NAME: ledn
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_REPLICA_SET_NAME: rs0
     ports:
       - 27017:27017
-    volumes:
-      - mongodb_data_container:/data/db
+    healthcheck:
+          test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo -u root -p rootpassword --quiet) -eq 1
+          interval: 10s
+          start_period: 30s
+    restart: on-failure
+    # volumes:
+    #   - mongodb_data_container:/data/db
   api:
     container_name: ledn-api
     image: latest/ledn-api
@@ -22,5 +30,5 @@ services:
       - mongodb
     depends_on:
       - mongodb
-volumes:
-  mongodb_data_container:
+# volumes:
+#   mongodb_data_container:
