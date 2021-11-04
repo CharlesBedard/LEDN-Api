@@ -48,9 +48,9 @@ I also added an extra **balance** field directly inside the Account schema. Whil
 ## Transactions
 
 The transactions reference accounts by their ids, instead of by the account email.
-In order to keep track of Admin transactions made through the /transactions endpoint (debits and credits) that are not part of transfers, transactions have an extra **admin** boolean field. When this is set to true, it means that this transaction came from an Admin debit/credit. This way, we can have a history of those transactions as well.
+In order to keep track of Admin transactions made through the /transactions endpoint (debits and credits) that are not part of transfers, transactions have an extra **admin** boolean field. When this is set to true, it means that this transaction came from an Admin debit/credit. This way, we can have a history of those transactions as well. \
 
-{ **type**: receive and **admin**: false } => account received money from transfer
+{ **type**: receive and **admin**: false } => account received money from transfer \
 { **type**: receive and **admin**: true } => account received credit from admin
 
 ## Database population
@@ -80,12 +80,12 @@ http://localhost:3000/api/transfers POST: Adds 2 transactions (send and receive)
 
 Given that the account keeps track of the balance, issues could arise if transactions were sent on the same account at the same time. I setup the mongodb container using a replica set in order to be able to use the Transactions feature from MongoDB. Using this feature, we can start a session and define operations that should be either all done together, or not at all. Coupling this with the optimisticConcurrency option in the schemas, we can ensure that if an account was edited and the balance changed between the read and the update of accounts, all the session is reverted and the db is back in the state it was before.
 
-Example with a transfer:
+Example with a transfer: \
 
-get sender account , get recipient account
-create sender transaction, create recipient transaction,
-set sender account -> error, it has been edited and the balance is different.
-revert all operations that changed the db above.
+get sender account , get recipient account \
+create sender transaction, create recipient transaction, \
+set sender account -> error, it has been edited and the balance is different. \
+revert all operations that changed the db above. \
 
 An even better solution would be to automatically retry transactions X number of times when this happens, so the person using the API doesn't even need to know that it failed once.
 
