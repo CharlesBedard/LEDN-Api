@@ -168,7 +168,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "enum": ["send", "receive"]
+                    "enum": ["credit", "debit"]
                 }
             }
         },

@@ -1,20 +1,20 @@
-import { UserModel, Transaction, TransactionModel } from '../schemas/schemas';
+import { AccountModel } from '../schemas';
 
 class AccountService {
     constructor() {}
 
     async getAccount(email: string) {
         // get the account from the email
-        let user;
+        let account;
         try {
-            user = await UserModel.findOne({ email }).lean();
+            account = await AccountModel.findOne({ email }).lean();
         } catch (err) {
-            throw new Error(`Error fetching user with email: ${email}`);
+            throw new Error(`Error fetching account with email: ${email}`);
         }
 
-        if (!user) throw new Error(`No account found for email: ${email}`);
+        if (!account) throw new Error(`No account found for email: ${email}`);
 
-        return user;
+        return account;
     }
 }
 export default new AccountService();

@@ -1,6 +1,5 @@
-import mongoose, { ClientSession } from 'mongoose';
-import { UserModel, Transaction, TransactionModel } from '../schemas/schemas';
-import AccountService from '../services/accountService';
+import mongoose from 'mongoose';
+import { AccountModel, Transaction, TransactionModel } from '../schemas';
 
 class TransactionService {
     constructor() {}
@@ -10,28 +9,28 @@ class TransactionService {
         const session = await mongoose.startSession();
         session.startTransaction();
         try {
-            const user = await UserModel.findOne({ email }).session(session);
+            const account = await AccountModel.findOne({ email }).session(session);
 
             const transaction: Transaction = {
-                userId: user,
+                accountId: account,
                 amount,
                 admin: true,
-                type,
+                type: type === 'credit' ? 'receive' : 'send',
                 createdAt: new Date(),
             };
 
             const transactionObj = new TransactionModel(transaction);
             await transactionObj.save({ session });
 
-            user.balance += transaction.type === 'receive' ? transaction.amount : -transaction.amount;
-            user.updatedAt = new Date();
-            await user.save();
+            account.balance += type === 'credit' ? transaction.amount : -transaction.amount;
+            account.updatedAt = new Date();
+            await account.save();
 
             await session.commitTransaction();
         } catch (error) {
             // if error, abort transaction reverts all changes made during transaction before failure
             await session.abortTransaction();
-
+            console.error(error);
             // rethrow the error
             throw error;
         } finally {
@@ -46,14 +45,14 @@ class TransactionService {
         session.startTransaction();
         try {
             // get the sender and recipient accounts
-            const sender = await UserModel.findOne({ email: senderEmail }).session(session);
-            const recipient = await UserModel.findOne({ email: recipientEmail }).session(session);
+            const sender = await AccountModel.findOne({ email: senderEmail }).session(session);
+            const recipient = await AccountModel.findOne({ email: recipientEmail }).session(session);
 
             if (!sender) throw new Error(`Error fetching user with email: ${senderEmail}`);
             if (!recipient) throw new Error(`Error fetching user with email: ${recipientEmail}`);
 
             const sendTransaction: Transaction = {
-                userId: sender,
+                accountId: sender,
                 amount,
                 admin: false,
                 type: 'send',
@@ -61,7 +60,7 @@ class TransactionService {
             };
 
             const receiveTransaction: Transaction = {
-                userId: recipient,
+                accountId: recipient,
                 amount,
                 admin: false,
                 type: 'receive',
@@ -86,7 +85,7 @@ class TransactionService {
         } catch (error) {
             // if error, abort transaction reverts all changes made during transaction before failure
             await session.abortTransaction();
-
+            console.error(error);
             throw error;
             // throw error;
         } finally {

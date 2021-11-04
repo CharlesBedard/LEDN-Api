@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { populateDatabase, MONGOOSE_URI } from './scripts/populate_db';
+import { MONGOOSE_URI } from './helpers/populate_db';
 import { router as routes } from './routes';
 
 const app = express();
@@ -19,5 +19,3 @@ mongoose.connection.on('connected', (err, res) => {
 app.listen(port, () => {
     console.log(`App is running, listening on port: ${port}`);
 });
-
-// const waitFor = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay));

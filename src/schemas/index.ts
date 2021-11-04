@@ -2,7 +2,8 @@ import { Schema, model } from 'mongoose';
 
 const regexEmail =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-interface User {
+
+interface Account {
     _id: Schema.Types.ObjectId;
     firstName: string;
     lastName: string;
@@ -16,7 +17,7 @@ interface User {
     referredBy: string;
 }
 
-export const UserSchema = new Schema<User>(
+export const AccountSchema = new Schema<Account>(
     {
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
@@ -48,16 +49,16 @@ export const UserSchema = new Schema<User>(
 );
 
 export interface Transaction {
-    userId: User;
+    accountId: Account;
     amount: number;
     type: string;
     admin: boolean;
     createdAt: Date;
 }
 
-const transactionSchema = new Schema<Transaction>(
+const TransactionSchema = new Schema<Transaction>(
     {
-        userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+        accountId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
         amount: { type: Number, required: true },
         admin: { type: Boolean, default: false },
         type: { type: String, enum: ['send', 'receive'], required: true },
@@ -66,5 +67,5 @@ const transactionSchema = new Schema<Transaction>(
     { optimisticConcurrency: true },
 );
 
-export const UserModel = model<User>('User', UserSchema);
-export const TransactionModel = model<Transaction>('Transaction', transactionSchema);
+export const AccountModel = model<Account>('Account', AccountSchema);
+export const TransactionModel = model<Transaction>('Transaction', TransactionSchema);

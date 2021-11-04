@@ -1,11 +1,10 @@
-import { Schema, model, connect, Mongoose, Collection } from 'mongoose';
-import { UserModel, TransactionModel } from '../schemas/schemas';
-import RawUsersLarge from '../../sample_data/accounts-api-large.json';
+import { AccountModel, TransactionModel } from '../schemas';
+import RawAccountsLarge from '../../sample_data/accounts-api-large.json';
 import RawTransactionsLarge from '../../sample_data/transactions-api-large.json';
-import RawUsersSmall from '../../sample_data/accounts-api.json';
+import RawAccountsSmall from '../../sample_data/accounts-api.json';
 import RawTransactionsSmall from '../../sample_data/transactions-api.json';
 
-export const MONGOOSE_URI = 'mongodb://root:rootpassword@mongodb:27017/ledn?authSource=admin';
+export const MONGOOSE_URI = 'mongodb://mongodb:27017/ledn';
 
 export enum SampleDataType {
     small,
@@ -13,24 +12,28 @@ export enum SampleDataType {
 }
 
 interface populateDbResponse {
-    insertedUsers: number;
-    userErrors: number;
+    insertedAccounts: number;
+    accountErrors: number;
     insertedTransactions: number;
     transactionErrors: number;
+}
+
+export function mapTransactions() {
+    return 5;
 }
 
 export async function populateDatabase(type: string) {
     if (!(RawTransactionsLarge instanceof Array)) throw new Error('Error loading sample data');
     // fetch the sample data: small or large datasets
-    let rawUserData = [];
+    let rawAccountData = [];
     let rawTransactionData = [];
     switch (type) {
         case SampleDataType[SampleDataType.small]:
-            rawUserData = RawUsersSmall;
+            rawAccountData = RawAccountsSmall;
             rawTransactionData = RawTransactionsSmall;
             break;
         case SampleDataType[SampleDataType.large]:
-            rawUserData = RawUsersLarge;
+            rawAccountData = RawAccountsLarge;
             rawTransactionData = RawTransactionsLarge;
             break;
         default:
@@ -38,31 +41,31 @@ export async function populateDatabase(type: string) {
     }
 
     const response: populateDbResponse = {
-        insertedUsers: 0,
-        userErrors: 0,
+        insertedAccounts: 0,
+        accountErrors: 0,
         insertedTransactions: 0,
         transactionErrors: 0,
     };
     // delete existing documents
-    await UserModel.deleteMany({});
+    await AccountModel.deleteMany({});
     await TransactionModel.deleteMany({});
     console.log('Account and Transaction collections cleared');
 
-    // populate users
-    let insertedUsers = [];
+    // populate accounts
+    let insertedAccounts = [];
     try {
-        insertedUsers = await UserModel.insertMany(rawUserData, { ordered: false });
+        insertedAccounts = await AccountModel.insertMany(rawAccountData, { ordered: false });
     } catch (err) {
-        insertedUsers = err.insertedDocs;
+        insertedAccounts = err.insertedDocs;
         console.log(`inserted users: ${err?.result?.nInserted}`);
         console.log(`errors: ${err?.result?.result?.writeErrors}`);
-        response.userErrors = err?.result?.result?.writeErrors?.length;
+        response.accountErrors = err?.result?.result?.writeErrors?.length;
     }
-    response.insertedUsers = insertedUsers.length;
+    response.insertedAccounts = insertedAccounts.length;
 
     // populate transactions
     // reuse the inserted users if possible, otherwise fetch them from the db
-    const users = insertedUsers || (await UserModel.find({}));
+    const users = insertedAccounts || (await AccountModel.find({}));
     const userMap = new Map();
     users.forEach((user: any) => {
         userMap.set(user.email.toLowerCase(), user);
@@ -70,7 +73,7 @@ export async function populateDatabase(type: string) {
     // loop through the transactions to insert the userID instead of the email
     const transactions: any[] = rawTransactionData;
     for (const transaction of transactions) {
-        transaction.userId = userMap.get(transaction.userEmail.toLowerCase())._id;
+        transaction.accountId = userMap.get(transaction.userEmail.toLowerCase())._id;
         delete transaction.userEmail;
     }
     let transactionResponse;
@@ -89,10 +92,10 @@ export async function populateDatabase(type: string) {
         // create a map where -> key: userId, value: array of all transactions for userId
         const transactionMap = new Map();
         transactionResponse.forEach((transaction) => {
-            if (transactionMap.has(transaction.userId)) {
-                transactionMap.get(transaction.userId).push(transaction);
+            if (transactionMap.has(transaction.accountId)) {
+                transactionMap.get(transaction.accountId).push(transaction);
             } else {
-                transactionMap.set(transaction.userId, [transaction]);
+                transactionMap.set(transaction.accountId, [transaction]);
             }
         });
 
@@ -106,7 +109,7 @@ export async function populateDatabase(type: string) {
                     balance -= transaction.amount;
                 }
             });
-            UserModel.findByIdAndUpdate(key, { balance }).catch((e) => {
+            AccountModel.findByIdAndUpdate(key, { balance }).catch((e) => {
                 console.log(e);
             });
         });

@@ -7,13 +7,11 @@ services:
     command: ["--replSet", "rs0", "--bind_ip_all"]
     environment:
       DB_NAME: ledn
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
       MONGO_REPLICA_SET_NAME: rs0
     ports:
       - 27017:27017
     healthcheck:
-          test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo -u root -p rootpassword --quiet) -eq 1
+          test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo --quiet) -eq 1
           interval: 10s
           start_period: 30s
     restart: on-failure
