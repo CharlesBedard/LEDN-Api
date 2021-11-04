@@ -6,6 +6,7 @@
 - [Database structure](#database-structure)
 - [Endpoints](#endpoints)
 - [Mongoose Atomicity](#mongoose-atomicity)
+- [Tools and tests](#tools-and-tests)
 - [Local environment setup](#local-environment-setup)
 
 # API overview
