@@ -48,7 +48,7 @@ I also added an extra **balance** field directly inside the Account schema. Whil
 ## Transactions
 
 The transactions reference accounts by their ids, instead of by the account email.
-In order to keep track of Admin transactions made through the /transactions endpoint (debits and credits) that are not part of transfers, transactions have an extra **admin** boolean field. When this is set to true, it means that this transaction came from an Admin debit/credit. This way, we can have a history of those transactions as well. \
+In order to keep track of Admin transactions made through the /transactions endpoint (debits and credits) that are not part of transfers, transactions have an extra **admin** boolean field. When this is set to true, it means that this transaction came from an Admin debit/credit. This way, we can have a history of those transactions as well.
 
 { **type**: receive and **admin**: false } => account received money from transfer \
 { **type**: receive and **admin**: true } => account received credit from admin
@@ -57,9 +57,11 @@ In order to keep track of Admin transactions made through the /transactions endp
 
 Due to some timing issues while using scripts to seed the database on startup with Docker, I added a resetDb endpoint which can be used to populate the database from the samples provided. It can also be used to clear the collections and populate them again.
 
-###Account processing
+### Account processing
 
 This endpoint goes through the sample json files and processes each entry using the shemas. Amongst other things it makes sure that the emails are unique, lowercase and indexed in the database. It makes sure that enum fields are respected and also uses regular expressions for emails and country codes. In the large account database, there were 10 duplicate accounts based on the email field, for the purpose of this project, I only log those duplicates in the console and discard them. A better solution for an API in production would be to have a document merging policy for such cases.
+
+### Transaction processing
 
 Once the Accounts have been created, the sample transactions are processed with the schema and using the userEmail, the accountId is added to the transaction. Transactions for which no account can be found will be discarded (although there were no such cases in this sample data).
 
@@ -80,12 +82,12 @@ http://localhost:3000/api/transfers POST: Adds 2 transactions (send and receive)
 
 Given that the account keeps track of the balance, issues could arise if transactions were sent on the same account at the same time. I setup the mongodb container using a replica set in order to be able to use the Transactions feature from MongoDB. Using this feature, we can start a session and define operations that should be either all done together, or not at all. Coupling this with the optimisticConcurrency option in the schemas, we can ensure that if an account was edited and the balance changed between the read and the update of accounts, all the session is reverted and the db is back in the state it was before.
 
-Example with a transfer: \
+Example with a transfer:
 
 get sender account , get recipient account \
 create sender transaction, create recipient transaction, \
 set sender account -> error, it has been edited and the balance is different. \
-revert all operations that changed the db above. \
+revert all operations that changed the db above.
 
 An even better solution would be to automatically retry transactions X number of times when this happens, so the person using the API doesn't even need to know that it failed once.
 
@@ -94,7 +96,7 @@ Note: Docker is required in order to run this API locally
 1. Clone the repository
 2. run: **docker-compose up** in the root directory of the repository
 3. Look at the logs and wait until the 'mongoose is connected' message is sent from the ledn-api container
-4. Open: http://localhost:3000/api/docs/#/default/get_resetDb \
+4. Open: http://localhost:3000/api/docs/#/default/get_resetDb
 5. At the swagger link from above, using the **Try it out** button, execute the request. This will populate your mongodb container (the default database used will be the small one, change the param for "large" in order to populate the bigger sample database. It can take up to 30 seconds to do so).
 All the endpoints are defined in the swagger and linked to the api
 
