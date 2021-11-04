@@ -73,7 +73,7 @@ All endpoints and their descriptions are available at the following URL once the
 - `POST /api/transactions`: Add entry to transaction collection and update the balance of the linked account. Only to be used by admin to Credit or Debit without a counterpart.
 - `POST /api/transfers`: Adds 2 transactions (send and receive), as well as updating the two accounts.
 
-The `/transactions` and `/transfers` would ideally return the response with the documents that have been created, but since I am using MongoDB transactions I did not have this information. An improvement here would be to either get more information from the MongoDB Transaction's created ressources in order to send the updated/created documents.
+The `/transactions` and `/transfers` would ideally return the response with the documents that have been created, but since I am using MongoDB transactions I did not have this information. An improvement here would be to get more information from the MongoDB Transaction's created ressources in order to send the updated/created documents.
 
 # Mongoose Atomicity
 
