@@ -1,6 +1,6 @@
 import { populateDatabase } from '../helpers/populate_db';
-import AccountService from '../services/accountService';
-import TransactionService from '../services/transactionService';
+import * as AccountService from '../services/accountService';
+import * as TransactionService from '../services/transactionService';
 
 enum TransactionTypes {
     'credit',
