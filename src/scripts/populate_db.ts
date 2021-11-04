@@ -62,7 +62,7 @@ export async function populateDatabase(type: string) {
 
     // populate transactions
     // reuse the inserted users if possible, otherwise fetch them from the db
-    const users = insertedUsers ? insertedUsers : await UserModel.find({});
+    const users = insertedUsers || (await UserModel.find({}));
     const userMap = new Map();
     users.forEach((user: any) => {
         userMap.set(user.email.toLowerCase(), user);
@@ -106,7 +106,7 @@ export async function populateDatabase(type: string) {
                     balance -= transaction.amount;
                 }
             });
-            UserModel.findByIdAndUpdate(key, { balance: balance }).catch((e) => {
+            UserModel.findByIdAndUpdate(key, { balance }).catch((e) => {
                 console.log(e);
             });
         });

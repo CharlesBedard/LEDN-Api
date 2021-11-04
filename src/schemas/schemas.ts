@@ -1,18 +1,7 @@
 import { Schema, model } from 'mongoose';
 
-const regex_email =
+const regexEmail =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-// User
-// * `firstName` (Account Holder First Name)
-// * `lastName` (Account Holder Last Name)
-// * `country` (Country code)
-// * `email` (Account Holder email, unique)
-// * `dob` (Account Holder Date of Birth)
-// * `mfa` (multi factor authentication possible values: [null, 'TOTP', 'SMS'])
-// * `createdAt` (Account creation date)
-// * `updatedAt` (Account update date)
-// * `referredBy` (email of referral account)
 interface User {
     _id: Schema.Types.ObjectId;
     firstName: string;
@@ -31,7 +20,7 @@ export const UserSchema = new Schema<User>(
     {
         firstName: { type: String, required: true },
         lastName: { type: String, required: true },
-        balance: { type: Number, default: 0 },
+        balance: { type: Number, default: 0, required: true },
         country: {
             type: String,
             required: true,
@@ -46,23 +35,18 @@ export const UserSchema = new Schema<User>(
             unique: true,
             index: true,
             required: true,
-            match: regex_email,
+            match: regexEmail,
             lowercase: true,
         },
         dob: { type: Date, required: true },
         mfa: { type: String, enum: [null, 'TOTP', 'SMS'], required: false },
         createdAt: { type: Date, required: true },
         updatedAt: { type: Date, required: true },
-        referredBy: { type: String, required: false, lowercase: true, match: regex_email, trim: true },
+        referredBy: { type: String, required: false, lowercase: true, match: regexEmail, trim: true },
     },
     { optimisticConcurrency: true },
 );
 
-// Transaction
-// * `userEmail` (Account Holder Email)
-// * `amount` (Number of tokens in transaction)
-// * `type` (Possible values: ['send', 'receive'])
-// * `createdAt` (Transaction creation date)
 export interface Transaction {
     userId: User;
     amount: number;

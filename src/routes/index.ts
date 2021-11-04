@@ -1,7 +1,7 @@
 import express from 'express';
-import { getAccount, postTransaction, postResetDb, postTransfer } from '../controllers';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
+import { getAccount, postTransaction, postResetDb, postTransfer } from '../controllers';
 import swaggerDocument from '../swagger/swagger.json';
 
 const jsonParser = bodyParser.json();

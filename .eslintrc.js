@@ -17,9 +17,19 @@ module.exports = {
     "prettier"
   ],
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
-    "no-console": 1,       // Means warning
-    "prettier/prettier": 2 // Means error
+    "no-console": 1,
+    "prettier/prettier": 2,
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 1,
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
+    'no-shadow': 'off',
+    'import/prefer-default-export': 'off',
+    'no-useless-escape': 'off',
+    'no-restricted-syntax': 1,
+    'no-underscore-dangle': 'off',
+    'no-useless-constructor': 'off',
+    'no-empty-function': 1,
+    'class-methods-use-this': 'off',
   },
 };

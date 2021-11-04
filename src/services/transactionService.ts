@@ -1,6 +1,6 @@
+import mongoose, { ClientSession } from 'mongoose';
 import { UserModel, Transaction, TransactionModel } from '../schemas/schemas';
 import AccountService from '../services/accountService';
-import mongoose, { ClientSession } from 'mongoose';
 
 class TransactionService {
     constructor() {}
@@ -54,7 +54,7 @@ class TransactionService {
 
             const sendTransaction: Transaction = {
                 userId: sender,
-                amount: amount,
+                amount,
                 admin: false,
                 type: 'send',
                 createdAt: new Date(),
@@ -62,7 +62,7 @@ class TransactionService {
 
             const receiveTransaction: Transaction = {
                 userId: recipient,
-                amount: amount,
+                amount,
                 admin: false,
                 type: 'receive',
                 createdAt: new Date(),
