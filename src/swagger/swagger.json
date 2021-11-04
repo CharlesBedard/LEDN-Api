@@ -88,7 +88,7 @@
         }
     },
     "/resetDb" : {
-        "get" : {
+        "post" : {
             "summary" : "Reset database",
             "description": "Clear the Accounts and Transactions collections and populate them from the sample data again. For the large database, it can take up to 30 seconds for the script to finish.",
             "produces": ["application/json"],

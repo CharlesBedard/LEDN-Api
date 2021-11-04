@@ -71,13 +71,16 @@ export interface Transaction {
     createdAt: Date;
 }
 
-const transactionSchema = new Schema<Transaction>({
-    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    amount: { type: Number, required: true },
-    admin: { type: Boolean, default: false },
-    type: { type: String, enum: ['send', 'receive'], required: true },
-    createdAt: { type: Date, required: false },
-});
+const transactionSchema = new Schema<Transaction>(
+    {
+        userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+        amount: { type: Number, required: true },
+        admin: { type: Boolean, default: false },
+        type: { type: String, enum: ['send', 'receive'], required: true },
+        createdAt: { type: Date, required: false },
+    },
+    { optimisticConcurrency: true },
+);
 
 export const UserModel = model<User>('User', UserSchema);
 export const TransactionModel = model<Transaction>('Transaction', transactionSchema);
