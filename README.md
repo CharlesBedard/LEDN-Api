@@ -31,6 +31,7 @@ The main npm libraries used for this api are:
 - `src/controllers`: contains the functions to handle the parameters and call the proper service for the request
 - `src/services`: contains the business logic as well as the database calls
 - `src/helpers`: contains the populate database helper function
+- `src/test`: contains some unit tests
 
 # Database structure
 
@@ -79,6 +80,8 @@ The `/transactions` and `/transfers` would ideally return the response with the 
 
 Given that the account keeps track of the balance, issues could arise if transactions were sent on the same account at the same time. I setup the mongodb container using a replica set in order to be able to use the Transactions feature from MongoDB. Using this feature, we can start a session and define operations that should be either all done together, or not at all. Coupling this with the `optimisticConcurrency` option in the schemas, we can ensure that if an account was edited and the balance changed between the read and the update of accounts, all the session is reverted and the db is back in the state it was before.
 
+I tested this manually by adding a timeout in the middle of a `/transfers` endpoint transaction, after the account documents were read. While the program was waiting, I manually did some changes to the one account document, which changed the version of the document `_v`. When the function restarted it's execution and tried to update the accounts, it saw the conflict and cancelled the transaction. No new transaction document were added and the account documents were left unchanged.
+
 Example with a transfer:
 
 - get sender account , get recipient account
@@ -87,6 +90,15 @@ Example with a transfer:
 - revert all operations that changed the db above.
 
 An even better solution would be to automatically retry transactions X number of times when this happens, so the person using the API doesn't even need to know that it failed once.
+
+# Tools and tests
+
+Here are some useful commands and tools setup in the project:
+
+- Prettier is setup to run automatically on save while using VsCode, but it can also be run using `npm run prettier`
+- ESLint is configured and can be run using `npm run lint`
+- Unit tests can be run using `npm run test` (I added a few unit tests for some helper functions)
+
 
 # Local environment setup
 Note: Docker is required in order to run this API locally

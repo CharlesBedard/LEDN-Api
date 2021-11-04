@@ -1,4 +1,5 @@
-import { populateDatabase } from '../helpers/populate_db';
+import { populateDatabase } from '../helpers/populateDB';
+import { formatAccount } from '../schemas';
 import * as AccountService from '../services/accountService';
 import * as TransactionService from '../services/transactionService';
 
@@ -7,6 +8,7 @@ enum TransactionTypes {
     'debit',
 }
 
+// Function to get an account from an email address
 export const getAccount = async (req: any, res: any) => {
     try {
         // validate parameters
@@ -18,9 +20,17 @@ export const getAccount = async (req: any, res: any) => {
         const email = req.query.email.toString().toLowerCase();
         const account = await AccountService.getAccount(email);
 
-        return res.send(account);
-    } catch (err) {
-        return res.status(400).send(err);
+        // format the account before sending
+        console.log(`Succesfully processed get request: ${req.query}`);
+        return res.send(formatAccount(account));
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({
+            error: {
+                status: 400,
+                message: error.message || 'Internal Server Error',
+            },
+        });
     }
 };
 
@@ -30,11 +40,20 @@ export const postResetDb = async (req: any, res: any) => {
         if (!req.query.type) {
             return res.status(400).send('Missing parameter "type"');
         }
+
+        // call the helper to populate database
         const type = req.query.type.toString();
         const dbStats = await populateDatabase(type);
+
         return res.send(dbStats);
-    } catch (err) {
-        return res.status(400).send({ Error: err });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({
+            error: {
+                status: 400,
+                message: error.message || 'Internal Server Error',
+            },
+        });
     }
 };
 
@@ -60,8 +79,14 @@ export const postTransaction = async (req: any, res: any) => {
         await TransactionService.createTransactionWithAccountUpdate(email, amount, type);
 
         return res.send('Succesfully created transaction and updated account');
-    } catch (err) {
-        return res.status(400).send(err);
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({
+            error: {
+                status: 400,
+                message: error.message || 'Internal Server Error',
+            },
+        });
     }
 };
 
@@ -95,7 +120,13 @@ export const postTransfer = async (req: any, res: any) => {
         await TransactionService.createTransferWithAccountUpdates(senderEmail, recipientEmail, amount);
 
         return res.send('Succesfully created transfer and updated accounts');
-    } catch (err) {
-        return res.status(400).send(err);
+    } catch (error) {
+        console.log(error);
+        return res.status(400).send({
+            error: {
+                status: 400,
+                message: error.message || 'Internal Server Error',
+            },
+        });
     }
 };

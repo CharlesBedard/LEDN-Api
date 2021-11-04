@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { MONGOOSE_URI } from './helpers/populate_db';
+import { MONGOOSE_URI } from './helpers/populateDB';
 import { router as routes } from './routes';
 
 const app = express();

@@ -18,8 +18,34 @@ interface populateDbResponse {
     transactionErrors: number;
 }
 
-export function mapTransactions() {
-    return 5;
+// Function to generate a map from transactions
+// key: accountId
+// value: array of all the transactions linked to the accountId
+export function getMapFromTransactions(transactions: any[]): Map<any, any[]> {
+    const transactionMap = new Map();
+    for (const transaction of transactions) {
+        if (transactionMap.has(transaction.accountId)) {
+            transactionMap.get(transaction.accountId).push(transaction);
+        } else {
+            transactionMap.set(transaction.accountId, [transaction]);
+        }
+    }
+
+    return transactionMap;
+}
+
+// Function to calculate an account's balance from a list of transactions
+export function getBalanceFromTransactionArray(transactions: any[]) {
+    let balance = 0;
+    // sum up the transactions
+    for (const transaction of transactions) {
+        if (transaction.type === 'receive') {
+            balance += transaction.amount;
+        } else if (transaction.type === 'send') {
+            balance -= transaction.amount;
+        }
+    }
+    return balance;
 }
 
 export async function populateDatabase(type: string) {
@@ -87,29 +113,14 @@ export async function populateDatabase(type: string) {
         response.transactionErrors = err?.result?.result?.writeErrors?.length;
     }
 
-    // loop through transactions to get the balance of every user
+    // loop through transactions to get the balance of every account
     try {
-        // create a map where -> key: userId, value: array of all transactions for userId
-        const transactionMap = new Map();
-        transactionResponse.forEach((transaction) => {
-            if (transactionMap.has(transaction.accountId)) {
-                transactionMap.get(transaction.accountId).push(transaction);
-            } else {
-                transactionMap.set(transaction.accountId, [transaction]);
-            }
-        });
+        // get a map where -> key: accountId, value: array of all transactions for accountId
+        const transactionMap = getMapFromTransactions(transactionResponse);
 
-        transactionMap.forEach((value, key) => {
-            // sum up the transactions
-            let balance = 0;
-            value.forEach((transaction: { type: string; amount: number }) => {
-                if (transaction.type === 'receive') {
-                    balance += transaction.amount;
-                } else if (transaction.type === 'send') {
-                    balance -= transaction.amount;
-                }
-            });
-            AccountModel.findByIdAndUpdate(key, { balance }).catch((e) => {
+        transactionMap.forEach(async (value, key) => {
+            const balance = getBalanceFromTransactionArray(value);
+            await AccountModel.findByIdAndUpdate(key, { balance }).catch((e) => {
                 console.log(e);
             });
         });

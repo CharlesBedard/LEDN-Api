@@ -6,6 +6,7 @@ import swaggerDocument from '../swagger/swagger.json';
 
 const jsonParser = bodyParser.json();
 export const router = express.Router();
+
 router.use('/docs', swaggerUi.serve);
 router.get('/docs', swaggerUi.setup(swaggerDocument));
 

@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose';
 const regexEmail =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-interface Account {
+export interface Account {
     _id: Schema.Types.ObjectId;
     firstName: string;
     lastName: string;
@@ -15,6 +15,15 @@ interface Account {
     createdAt: Date;
     updatedAt: Date;
     referredBy: string;
+    _v: number;
+}
+
+// Function to remove fields from the model before sending the result to the client
+export function formatAccount(account: any) {
+    const formattedAccount = JSON.parse(JSON.stringify(account));
+    delete formattedAccount._id;
+    delete formattedAccount._v;
+    return formattedAccount;
 }
 
 export const AccountSchema = new Schema<Account>(
