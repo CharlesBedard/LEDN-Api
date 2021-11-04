@@ -1,42 +1,170 @@
 {
     "swagger": "2.0",
     "info": {
-      "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+      "description": "API for LEDN interview",
       "version": "1.0.0",
-      "title": "Swagger Petstore"
+      "title": "Swagger LEDN-API"
     },
     "host": "localhost:3000",
     "basePath": "/api",
     "paths" : {
-      "/users" : {
+      "/accounts" : {
           "get" : {
-              "summary" : "Get all the tasks",
-              "description": "Get all the tasks",
+              "summary" : "Get an account",
+              "description": "Get an account and it's balance from the account's email",
               "produces": ["application/json"],
               "parameters": [{
                   "in": "query",
                   "name": "email",
-                  "type": "string",
+                  "schema": {
+                      "type": "string",
+                      "example": "cassandre10@gmail.com"
+                  },
                   "required": true
               }],
               "responses": {
                   "200": {
-                      "description": "successful operation",
+                      "description": "successful get",
                       "schema": {
-                          "type": "array",
-                          "items": {
-                              "$ref": "#/definitions/todosResponse"
-                          }
-                      }
-                  },
-                  "400": {
-                      "description": "Invalid status value",
-                      "schema": {
-                          "$ref": "#/definitions/InvalidResponse"
+                            "$ref": "#/definitions/account"
                       }
                   }
               }
           }
-      }
+      },
+      "/transactions" : {
+        "post" : {
+            "summary" : "Create a new transaction",
+            "description": "Add entry to transaction collection and update the balance of the linked account. Only to be used by admin to Credit or Debit without a counterpart.",
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "transaction information",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "$ref": "#/definitions/transactionRequest"
+                    }
+                }
+        ],
+            "responses": {
+                "200": {
+                    "description": "Success response",
+                    "schema": {
+                          "type": "string",
+                          "example": "Succesfully created transaction and updated account"
+                    }
+                }
+            }
+        }
+    },
+    "/transfers" : {
+        "post" : {
+            "summary" : "Create a new transfer",
+            "description": "Adds 2 transactions (send and receive), as well as updating the two accounts.",
+            "produces": ["application/json"],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "transfer information",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/transferRequest"
+                    }
+                }
+        ],
+            "responses": {
+                "200": {
+                    "description": "Success response",
+                    "schema": {
+                          "type": "string",
+                          "example": "Succesfully created transfer and updated accounts"
+                    }
+                }
+            }
+        }
+    }
+    },
+    "definitions": {
+        "account": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                     "type": "integer",
+                     "format": "uuid"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "balance": {
+                    "type": "number"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "dob": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "mfa": {
+                    "type": "string",
+                    "enum": ["null", "TOTP", "SMS"]
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "referredBy": {
+                    "type": "string",
+                    "format": "email"
+                }
+            }
+        },
+        "transactionRequest": {
+            "type": "object",
+            "properties": {
+                "email": {
+                     "type": "string",
+                     "format": "email"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["send", "receive"]
+                }
+            }
+        },
+        "transferRequest": {
+            "type": "object",
+            "properties": {
+                "senderEmail": {
+                     "type": "string",
+                     "format": "email"
+                },
+                "recipientEmail": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "amount": {
+                    "type": "number"
+                }
+            }
+        }
     }
 }

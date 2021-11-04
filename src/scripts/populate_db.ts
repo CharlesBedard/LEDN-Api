@@ -19,12 +19,12 @@ interface populateDbResponse {
     transactionErrors: number;
 }
 
-export async function populateDatabase(sampleType: string) {
+export async function populateDatabase(type: string) {
     if (!(RawTransactionsLarge instanceof Array)) throw new Error('Error loading sample data');
     // fetch the sample data: small or large datasets
     let rawUserData = [];
     let rawTransactionData = [];
-    switch (sampleType) {
+    switch (type) {
         case SampleDataType[SampleDataType.small]:
             rawUserData = RawUsersSmall;
             rawTransactionData = RawTransactionsSmall;
@@ -46,6 +46,7 @@ export async function populateDatabase(sampleType: string) {
     // delete existing documents
     await UserModel.deleteMany({});
     await TransactionModel.deleteMany({});
+    console.log('Account and Transaction collections cleared');
 
     // populate users
     let insertedUsers = [];

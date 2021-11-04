@@ -1,168 +1,88 @@
-import { UserModel, Transaction, TransactionModel } from '../schemas/schemas';
 import { populateDatabase } from '../scripts/populate_db';
-import mongoose from 'mongoose';
+import AccountService from '../services/accountService';
+import TransactionService from '../services/transactionService';
+
 enum TransactionTypes {
     'send',
     'receive',
 }
 
-export const getUsers = async (req: any, res: any) => {
-    // validate parameters
-    if (!(req.query.email || req.query.userId)) {
-        res.status(400).send('Missing parameters. Required parameters are: {email}');
-        return;
-    }
-
-    const emailParam = req.query.email.toString().toLowerCase();
-
-    // get the account from the email
-    let user;
+export const getAccount = async (req: any, res: any) => {
     try {
-        user = await UserModel.findOne({ email: emailParam }).lean();
+        // validate parameters
+        if (!req.query.email) {
+            return res.status(400).send('Missing parameters. Required parameters are: {email}');
+        }
+
+        // get account
+        const email = req.query.email.toString().toLowerCase();
+        const account = await AccountService.getAccount(email);
+
+        res.send(account);
     } catch (err) {
-        res.status(404).send(`Error fetching user with email: ${emailParam}`);
+        res.status(400).send(err);
     }
-
-    if (!user) res.status(404).send(`No account found for email: ${emailParam}`);
-
-    // TODO: dto
-    const stringUser = JSON.parse(JSON.stringify(user));
-    res.send(stringUser);
 };
 
 export const postResetDb = async (req: any, res: any) => {
     try {
-        const r = await populateDatabase(req.query.sampleType.toString());
-        res.send(r);
+        // validate parameters
+        if (!req.query.type) {
+            return res.status(400).send('Missing parameter "type"');
+        }
+        const type = req.query.type.toString();
+        const dbStats = await populateDatabase(type);
+        res.send(dbStats);
     } catch (err) {
-        res.send({ error: err });
+        res.status(400).send({ Error: err });
     }
 };
 
 export const postTransaction = async (req: any, res: any) => {
-    // validate body
-    if (!(req.body.email && req.body.amount && req.body.type))
-        res.status(400).send('Missing parameters. Required parameters are: {email, amount, type}');
-    const emailParam = req.body.email.toLowerCase();
-    const amountParam = Number(req.body.amount);
-    const typeParam = req.body.type.toLowerCase();
-
-    if (!amountParam)
-        res.status(400).send(`Error in parameter "number". Must be a number but received ${req.body.amount}`);
-    if (!Object.values(TransactionTypes).includes(typeParam)) {
-        res.status(400).send(
-            `Error in parameter "type". Valid options are { send, receive }, but received: ${req.body.type}`,
-        );
-    }
-
-    // start a session in order for the user/transaction updates to be "atomic"
-    const session = await mongoose.startSession();
-    session.startTransaction();
     try {
-        const user = await UserModel.findOne({ email: emailParam }).session(session);
+        // validate body
+        if (!(req.body.email && req.body.amount && req.body.type))
+            throw new Error('Missing parameters. Required parameters are: {email, amount, type}');
+        const email = req.body.email.toLowerCase();
+        const amount = Number(req.body.amount);
+        const type = req.body.type.toLowerCase();
 
-        const transaction: Transaction = {
-            userId: user,
-            amount: Number(amountParam),
-            type: typeParam,
-            createdAt: new Date(),
-        };
+        if (!amount) throw new Error(`Error in parameter "number". Must be a number but received ${req.body.amount}`);
+        if (!Object.values(TransactionTypes).includes(type)) {
+            throw new Error(
+                `Error in parameter "type". Valid options are { send, receive }, but received: ${req.body.type}`,
+            );
+        }
 
-        const transactionObj = new TransactionModel(transaction);
-        await transactionObj.save({ session });
+        await TransactionService.createTransactionWithAccountUpdate(email, amount, type);
 
-        user.balance += transactionObj.type === 'receive' ? transactionObj.amount : -transactionObj.amount;
-        await user.save();
-
-        await session.commitTransaction();
-    } catch (error) {
-        // if anything fails above just rollback the changes here
-        // this will rollback any changes made in the database
-        await session.abortTransaction();
-
-        // logging the error
-        console.error(error);
-
-        // rethrow the error
-        throw error;
-    } finally {
-        // ending the session
-        session.endSession();
+        res.send('Succesfully created transaction and updated account');
+    } catch (err) {
+        res.status(400).send(err);
     }
-
-    res.send({ message: 'Succesfully created transaction', transaction: {} });
 };
 
 export const postTransfer = async (req: any, res: any) => {
-    // validate body
-    if (!(req.body.senderEmail && req.body.recipientEmail && req.body.amount)) {
-        res.status(400).send('Missing parameters. Required parameters are: {senderEmail, recipientEmail, amount}');
-        return;
-    }
-    const senderEmail = req.body.senderEmail.toLowerCase();
-    const amount = Number(req.body.amount);
-    const recipientEmail = req.body.recipientEmail.toLowerCase();
-
-    if (!amount || amount < 0) {
-        res.status(400).send(`Error in parameter "number". Must be a positive number but received ${req.body.amount}`);
-        return;
-    }
-    if (senderEmail === recipientEmail) {
-        res.status(400).send('Error: "senderEmail" and "recipientEmail" must be different');
-    }
-
-    // start a session in order for the user/transaction updates to be "atomic"
-    const session = await mongoose.startSession();
-    session.startTransaction();
     try {
-        // get the sender and recipient accounts
-        const sender = await UserModel.findOne({ email: senderEmail }).session(session);
-        const recipient = await UserModel.findOne({ email: recipientEmail }).session(session);
+        // validate body
+        if (!(req.body.senderEmail && req.body.recipientEmail && req.body.amount)) {
+            throw new Error('Missing parameters. Required parameters are: {senderEmail, recipientEmail, amount}');
+        }
+        const senderEmail = req.body.senderEmail.toLowerCase();
+        const amount = Number(req.body.amount);
+        const recipientEmail = req.body.recipientEmail.toLowerCase();
 
-        if (!sender) res.status(404).send(`Error fetching user with email: ${senderEmail}`);
-        if (!recipient) res.status(404).send(`Error fetching user with email: ${recipientEmail}`);
+        if (!amount || amount < 0) {
+            throw new Error(`Error in parameter "number". Must be a positive number but received ${req.body.amount}`);
+        }
+        if (senderEmail === recipientEmail) {
+            throw new Error('Error: "senderEmail" and "recipientEmail" must be different');
+        }
 
-        const sendTransaction: Transaction = {
-            userId: sender,
-            amount: amount,
-            type: 'send',
-            createdAt: new Date(),
-        };
+        await TransactionService.createTransferWithAccountUpdates(senderEmail, recipientEmail, amount);
 
-        const receiveTransaction: Transaction = {
-            userId: recipient,
-            amount: amount,
-            type: 'receive',
-            createdAt: new Date(),
-        };
-
-        const sendTransactionModel = new TransactionModel(sendTransaction);
-        const receiveTransactionModel = new TransactionModel(receiveTransaction);
-
-        await sendTransactionModel.save({ session });
-        await receiveTransactionModel.save({ session });
-
-        sender.balance -= amount;
-        recipient.balance += amount;
-
-        await sender.save();
-        await recipient.save();
-
-        await session.commitTransaction();
-    } catch (error) {
-        // if anything fails above just rollback the changes here
-        // this will rollback any changes made in the database
-        await session.abortTransaction();
-
-        // logging the error
-        console.error(error);
-
-        // rethrow the error
-        res.status(404).send(error);
-        // throw error;
-    } finally {
-        // ending the session
-        session.endSession();
+        res.send('Succesfully created transfer and updated accounts');
+    } catch (err) {
+        res.status(400).send(err);
     }
-    res.send('Transaction succesful');
 };
