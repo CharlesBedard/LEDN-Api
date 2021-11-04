@@ -86,7 +86,29 @@
                 }
             }
         }
-    }
+    },
+    "/resetDb" : {
+        "get" : {
+            "summary" : "Reset database",
+            "description": "Clear the Accounts and Transactions collections and populate them from the sample data again. For the large database, it can take up to 30 seconds for the script to finish.",
+            "produces": ["application/json"],
+            "parameters": [{
+                "in": "query",
+                "name": "type",
+                "schema": {
+                    "type": "string",
+                    "enum": ["small", "large"],
+                    "example": "small"
+                },
+                "required": true
+            }],
+            "responses": {
+                "200": {
+                    "description": "Returns the number of inserted documents"
+                }
+            }
+        }
+    },
     },
     "definitions": {
         "account": {

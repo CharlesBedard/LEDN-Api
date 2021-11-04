@@ -15,6 +15,7 @@ class TransactionService {
             const transaction: Transaction = {
                 userId: user,
                 amount,
+                admin: true,
                 type,
                 createdAt: new Date(),
             };
@@ -54,6 +55,7 @@ class TransactionService {
             const sendTransaction: Transaction = {
                 userId: sender,
                 amount: amount,
+                admin: false,
                 type: 'send',
                 createdAt: new Date(),
             };
@@ -61,6 +63,7 @@ class TransactionService {
             const receiveTransaction: Transaction = {
                 userId: recipient,
                 amount: amount,
+                admin: false,
                 type: 'receive',
                 createdAt: new Date(),
             };
