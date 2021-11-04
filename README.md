@@ -77,6 +77,8 @@ http://localhost:3000/api/transactions POST: Add entry to transaction collection
 
 http://localhost:3000/api/transfers POST: Adds 2 transactions (send and receive), as well as updating the two accounts.
 
+The /transactions and /transfers would ideally return the a response with the documents that have been created, but since I am using MongoDB transactions I did not have this information. An improvement here would be to either get more information from the MongoDB Transaction's created ressources in order to send the updated/created documents.
+
 
 # Mongoose Atomicity
 
