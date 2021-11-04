@@ -12,7 +12,7 @@
 
 # API overview
 
-This API is built using two docker containers. The first container runs mongodb using a single-node replica set (to allow the use of transactions). The second container runs a node express API.
+This API is built using two docker containers. The first container runs mongodb using a single-node replica set (to allow the use of Mongodb transactions). The second container runs a node express API.
 
 # Libraries used
 
@@ -69,4 +69,4 @@ run: docker-compose up\
 Look at the logs and wait until the 'mongoose is connected' message is sent from the ledn-api container\
 Open: http://localhost:3000/api/docs/#/default/get_resetDb \
 At the swagger link from above, using the "Try it out" button, execute the command. This will populate your mongodb container (the default database used will be the small one, change the param for "large" in order to populate the bigger sample database. It can take up to 30 seconds to do so).\
-All the endpoints are defined in the swagger and linked to the api\
+All the endpoints are defined in the swagger and linked to the api
