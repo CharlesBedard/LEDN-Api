@@ -76,6 +76,8 @@ All endpoints and their descriptions are available at the following URL once the
 
 The `/transactions` and `/transfers` would ideally return the response with the documents that have been created, but since I am using MongoDB transactions I did not have this information. An improvement here would be to get more information from the MongoDB Transaction's created ressources in order to send the updated/created documents.
 
+Error handling is also affected by the MongoDB transactions library, it does not return errors that are easy to interpret for users. This could be improved by creating an error service that would map MongoDB errors to user friendly errors.
+
 # Mongoose Atomicity
 
 Given that the account keeps track of the balance, issues could arise if transactions were sent on the same account at the same time. I setup the mongodb container using a replica set in order to be able to use the Transactions feature from MongoDB. Using this feature, we can start a session and define operations that should be either all done together, or not at all. Coupling this with the `optimisticConcurrency` option in the schemas, we can ensure that if an account was edited and the balance changed between the read and the update of accounts, all the session is reverted and the db is back in the state it was before.

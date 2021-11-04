@@ -15,14 +15,14 @@ export interface Account {
     createdAt: Date;
     updatedAt: Date;
     referredBy: string;
-    _v: number;
+    __v: number;
 }
 
 // Function to remove fields from the model before sending the result to the client
 export function formatAccount(account: any) {
     const formattedAccount = JSON.parse(JSON.stringify(account));
     delete formattedAccount._id;
-    delete formattedAccount._v;
+    delete formattedAccount.__v;
     return formattedAccount;
 }
 

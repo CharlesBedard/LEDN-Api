@@ -20,8 +20,8 @@ export const getAccount = async (req: any, res: any) => {
         const email = req.query.email.toString().toLowerCase();
         const account = await AccountService.getAccount(email);
 
+        console.log(`Succesfully processed get account request using email: ${email}`);
         // format the account before sending
-        console.log(`Succesfully processed get request: ${req.query}`);
         return res.send(formatAccount(account));
     } catch (error) {
         console.log(error);
@@ -45,6 +45,7 @@ export const postResetDb = async (req: any, res: any) => {
         const type = req.query.type.toString();
         const dbStats = await populateDatabase(type);
 
+        console.log(`Succesfully processed resetDB request`, dbStats);
         return res.send(dbStats);
     } catch (error) {
         console.log(error);
